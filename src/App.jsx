@@ -35,44 +35,32 @@ export default function App() {
         setPedidos([...listaPedidos, produto]);
     };
 
-    const removerProdutoPedido = (id) => {
-        setPedidos(listaPedidos.filter(produto => produto.id !== id));
-    };
-
     return (
-        <div className="bloco-principal">
-            <div className="bloco-produtos">
-                {listaProdutos.map((produto) => (
-                    <div key={produto.id}>
-                        <img src={produto.imagem} alt={produto.item} />
-                        <p>{produto.item}</p>
-                        <p>{produto.preco}</p>
-                        <button onClick={() => adicionarProdutoPedido(produto)}>Adicionar</button>
-                    </div>
-                ))}
-            </div>
-            <div className="bloco-pedidos">
-                <p>Meus Pedidos</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Item</th>
-                            <th>Imagem</th>
-                            <th>Preço</th>
-                            <th>Ação</th>
-                        </tr>
-                    </thead>
+    <div className="bloco-principal">
+    <div className="bloco-produtos">
+    {listaProdutos.map((produto) => (
+    <div key={produto.id}>
+    <img src={produto.imagem} alt={produto.item} />
+    <p>{produto.item}</p>
+    <p>{produto.preco}</p>
+    <button onClick={() => adicionarProdutoPedido(produto)}>Adicionar</button>
+    </div>
+    ))}
+    </div>
+    <div className="bloco-pedidos">
+    <p>Meus Pedidos</p>
+    <table>
+    <thead>
+    <tr>
+    <th>Produto</th>
+    <th>Valor</th>
+    </tr>
+    </thead>
                     <tbody>
                         {listaPedidos.map((produto) => (
                             <tr key={produto.id}>
-                                <td>{produto.id}</td>
                                 <td>{produto.item}</td>
-                                <td><img src={produto.imagem} alt={produto.item} style={{ width: "50px" }} /></td>
                                 <td>{produto.preco}</td>
-                                <td>
-                                    <button onClick={() => removerProdutoPedido(produto.id)}>Remover</button>
-                                </td>
                             </tr>
                         ))}
                     </tbody>
