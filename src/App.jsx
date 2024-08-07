@@ -34,38 +34,57 @@ export default function App() {
     const adicionarProdutoPedido = (produto) => {
         setPedidos([...listaPedidos, produto]);
     };
+console.table(listaPedidos);
 
+const removerItem = (id)=> {
+    let remover = false;
+    let listaAux = listaPedidos.filter((pedido) =>
+           {
+            if(pedido.id == id){
+                return null
+            }else{
+                return pedido
+    
+            }
+           }
+    );
+    setPedidos(listaAux);
+        }
     return (
-    <div className="bloco-principal">
-    <div className="bloco-produtos">
+     <div className="bloco-principal">
+     <div className="bloco-produtos">
     {listaProdutos.map((produto) => (
-    <div key={produto.id}>
-    <img src={produto.imagem} alt={produto.item} />
-    <p>{produto.item}</p>
-    <p>{produto.preco}</p>
-    <button onClick={() => adicionarProdutoPedido(produto)}>Adicionar</button>
+      <div key={produto.id}>
+       <img src={produto.imagem} alt={produto.item} />
+        <p>{produto.item}</p>
+         <p>{produto.preco}</p>
+           <button onClick={() => adicionarProdutoPedido(produto)}>Adicionar</button>
     </div>
     ))}
     </div>
-    <div className="bloco-pedidos">
-    <p>Meus Pedidos</p>
-    <table>
-    <thead>
-    <tr>
-    <th>Produto</th>
-    <th>Valor</th>
+      <div className="bloco-pedidos">
+        <p>Meus Pedidos</p>
+        <table>
+           <tr>
+               <th>Produto</th>
+                    <th>Valor</th>
     </tr>
-    </thead>
-                    <tbody>
-                        {listaPedidos.map((produto) => (
-                            <tr key={produto.id}>
-                                <td>{produto.item}</td>
-                                <td>{produto.preco}</td>
-                            </tr>
+   
+
+    {listaPedidos.map((produto) => (
+      <tr key={produto.id}>
+         <td>{produto.item}</td>
+                <td>{produto.preco}
+                  <button onClick={() => removerItem(produto.id)}>X</button>
+                  </td>
+                  
+                    </tr>
+            
                         ))}
-                    </tbody>
-                </table>
+                    
+                    </table>
             </div>
         </div>
     );
+    
 }
